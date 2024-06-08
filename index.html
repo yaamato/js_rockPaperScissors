@@ -1,0 +1,55 @@
+<script>
+let playerScore;
+let computerScore;
+    function computerPlay() {
+        const list = ["Камень", "Ножницы", "Бумага"];
+        const index = Math.floor(Math.random() * list.length);
+        return list[index];
+         
+    }
+    function playRound(playerSelection, computerSelection) {
+        if (playerSelection.toLowerCase() === "камень" && computerSelection === "Камень" || playerSelection.toLowerCase() === "ножницы" && computerSelection === "Ножницы" || playerSelection.toLowerCase() === "бумага" && computerSelection === "Бумага") {
+            return "Ничья."
+        } else if (playerSelection.toLowerCase() === "камень" && computerSelection === "Ножницы") {
+            playerScore++;
+            return "Вы победили! Камень бьёт ножницы.";
+        } else if (playerSelection.toLowerCase() === "камень" && computerSelection === "Бумага") {
+            computerScore++;
+            return "Вы проиграли! Бумага бьёт камень.";
+        } else if (playerSelection.toLowerCase() === "ножницы" && computerSelection === "Камень") {
+            computerScore++
+            return "Вы проиграли! Камень бьёт ножницы.";
+        } else if (playerSelection.toLowerCase() === "ножницы" && computerSelection === "Бумага") {
+            playerScore++;
+            return "Вы победили! Ножницы бьют бумагу.";
+        } else if (playerSelection.toLowerCase() === "бумага" && computerSelection === "Камень") {
+            playerScore++;
+            return "Вы победили! Бумага бьёт камень.";
+        } else if (playerSelection.toLowerCase() === "бумага" && computerSelection === "Ножницы") {
+            computerScore++;
+            return "Вы проиграли. Ножницы бьют бумагу!";
+        } else {
+            return "Непредвиденная ошибка!!";
+        }
+    }
+    
+    function game() {
+        playerScore = 0;
+        computerScore = 0;
+        while (playerScore < 5 || computerScore < 5) {
+            const playerSelection = prompt("Камень, ножницы, бумага?(Введите ниже)");
+            const computerSelection = computerPlay();
+            console.log(playRound(playerSelection, computerSelection));
+            console.log(" Ваш счёт: " + playerScore + ". Счёт компьютера: " + computerScore + ".");
+            if (playerScore === 5) {
+            console.log("Вы победили. Со счётом " + playerScore + ":" + computerScore);
+            break;
+        } else if (computerScore === 5) {
+            console.log("Вы проиграли. Со счётом " + playerScore + ":" + computerScore);
+            break;
+        }
+        }
+    
+     }
+     game();
+</script>
